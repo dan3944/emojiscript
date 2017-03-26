@@ -9,7 +9,7 @@
 ++ ⏩
 -- ⏪
 , 🎷
-. 🥊
+. 🍍
 / 📈
 : 🍩
 ; 🛑
@@ -18,10 +18,10 @@
 < 🔉
 >> ▶
 << ◀
->>> ⏭
+>>> ➡
 ? ❓
-[ 🤜
-] 🤛
+[ 👉
+] 👈
 abstract ⏹
 boolean ☯
 break 💔
@@ -64,8 +64,8 @@ super 🎅
 switch 🔀
 synchronized 👯
 this 👉
-throw 🤾
-throws 🤹
+throw 🏀
+throws ⛹
 transient 👻
 true ☀
 try 🏋
@@ -75,7 +75,7 @@ void ⛔
 volatile 💣
 while ⌛
 while(true) ∞
-with 🥑
+with 🍟
 { ↪
 | 🚬
 } ↩
