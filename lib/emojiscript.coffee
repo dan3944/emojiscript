@@ -7,6 +7,7 @@ module.exports = Emojiscript =
   subscriptions: null
 
   activate: (state) ->
+
     @emojiscriptView = new EmojiscriptView(state.emojiscriptViewState)
     @emojiPanel = atom.workspace.addBottomPanel(item: @emojiscriptView.getElement(), visible: false, priority: 100)
 

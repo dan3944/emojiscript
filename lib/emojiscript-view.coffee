@@ -1,36 +1,43 @@
 $ = require('jquery')
 {CompositeDisposable} = require 'atom'
 subscriptions = new CompositeDisposable
+cmd = require 'node-cmd'
 
 module.exports =
 class EmojiscriptView
 
   constructor: (serializedState) ->
 
-    workspace = atom.workspace
-    editor = workspace.getActivePaneItem()
+    editor = atom.workspace.getActivePaneItem()
+    active_editor = atom.workspace.getActiveTextEditor(editor)
     file = editor?.buffer.file
-    filePath = file?.path
-    emojis = null
-    editor = atom.workspace.getActiveTextEditor(editor)
+    file_path = file?.path
+    file_title = active_editor.getTitle()
 
-    @element = $('<div class="emojiscript">').load("#{filePath}/../../lib/emoji-panel.html", -> (
+    @emojiPanel = $('<div class="emojiscript">').load("#{file_path}/../../lib/emoji-panel.html", -> (
       emojis = $(@).find('.emoji')
       for emoji in emojis
       	subscriptions.add atom.tooltips.add(emoji, {title: emoji.textContent, delay: {show: 0, hide: 0} })
       	emoji.onclick = ->
-        	editor.insertText(@textContent) 
+        	active_editor.insertText(@textContent)
     ))
 
-    # atom.workspace.observeTextEditors (editor) ->
-    #   editor.insertText('Hello World')
+    atom.workspace.onDidStopChangingActivePaneItem( (item) ->
+      # console.log item
+      active_editor = item
+    )
+    # @active_editor = atom.workspace.getActiveTextEditor(@editor)
+    # console.log @active_editor.getTitle()
 
+    active_editor.onDidSave( ->
+      cmd.run("./transpiler/emojiscript #{file_path} transpiler/substitutions.txt")
+      console.log "File #{file_title} transpiled"
+    )
 
   serialize: ->
 
-  # Tear down any state and detach
   destroy: ->
-    @element.remove()
+    @emojiPanel.remove()
 
   getElement: ->
-    @element
+    @emojiPanel
