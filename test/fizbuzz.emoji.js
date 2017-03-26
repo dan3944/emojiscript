@@ -13,4 +13,3 @@ function fizzbuzz(number) {
 }
 
 fizzbuzz(20)
-console.log("🔨🏨👶")
