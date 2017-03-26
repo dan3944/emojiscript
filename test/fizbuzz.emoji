@@ -1,14 +1,16 @@
-🍰 number ⚖ process🥊argv🤜2🤛
 
-⌛🌜number 🔊 0🌛 ↪
+🔬 fizzbuzz🌜number🌛 ↪
+  ⌛🌜number 🔊 0🌛 ↪
 
-  🤔 🌜number ✂ 3 ⚖⚖ 0🌛 ↪
-    console🥊log🌜"fizz"🌛
+    🤔 🌜number ✂ 3 ⚖⚖ 0🌛 ↪
+      console🥊log🌜"fizz"🌛
+    ↩
+    🤔 🌜number ✂ 5 ⚖⚖ 0🌛 ↪
+      console🥊log🌜"buzz"🌛
+    ↩
+    number⏪
   ↩
-  🤔 🌜number ✂ 5 ⚖⚖ 0🌛 ↪
-    console🥊log🌜"buzz"🌛
-  ↩
-  number⏪
 ↩
 
-console🥊log🌜'bye bye'🌛
+fizzbuzz🌜20🌛
+console🥊log🌜'🔨🏨👶'🌛

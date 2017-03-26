@@ -13,6 +13,31 @@ class EmojiscriptView
     file = editor?.buffer.file
     file_path = file?.path
 
+    active_editor.onDidSave( ->
+      title = active_editor.getTitle()
+      ext = title.split(".")[1]
+      path = active_editor.getPath()
+      if ext == "emoji"
+        cmd.get("cd #{file_path}/../../ && ./transpiler/emojiscript #{path} transpiler/substitutions.txt", (output) ->
+          atom.notifications.addSuccess "File #{title} successfully transpiled",
+            detail: "Press Cntr+Alt+R to run"
+        )
+    )
+
+    atom.workspace.onDidStopChangingActivePaneItem( (item) ->
+      active_editor = item
+      active_editor.onDidSave( ->
+        title = active_editor.getTitle()
+        ext = title.split(".")[1]
+        path = active_editor.getPath()
+        if ext == "emoji"
+          cmd.get("cd #{file_path}/../../ && ./transpiler/emojiscript #{path} transpiler/substitutions.txt", (output) ->
+            atom.notifications.addSuccess "File #{title} successfully transpiled",
+              detail: "Press Cntr+Alt+R to run"
+          )
+      )
+    )
+
     @emojiPanel = $('<div class="emojiscript">').load("#{file_path}/../../lib/emoji-panel.html", -> (
       emojis = $(@).find('.emoji')
       for emoji in emojis
@@ -20,21 +45,6 @@ class EmojiscriptView
       	emoji.onclick = ->
         	active_editor.insertText(@textContent)
     ))
-
-    atom.workspace.onDidStopChangingActivePaneItem( (item) ->
-      active_editor = item
-    )
-
-    active_editor.onDidSave( ->
-      title = active_editor.getTitle()
-      ext = title.split(".")[1]
-      console.log ext
-      path = active_editor.getPath()
-      if ext == "emoji"
-        cmd.get("cd #{file_path}/../../ && ./transpiler/emojiscript #{path} transpiler/substitutions.txt", (output) ->
-          console.log output
-        )
-    )
 
   serialize: ->
 
