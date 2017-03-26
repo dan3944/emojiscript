@@ -11,4 +11,4 @@ while(number > 0) {
   number--
 }
 
-console.log("end")
+console.log("bye bye")

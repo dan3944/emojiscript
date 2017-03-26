@@ -12,7 +12,6 @@ class EmojiscriptView
     active_editor = atom.workspace.getActiveTextEditor(editor)
     file = editor?.buffer.file
     file_path = file?.path
-    file_title = active_editor.getTitle()
 
     @emojiPanel = $('<div class="emojiscript">').load("#{file_path}/../../lib/emoji-panel.html", -> (
       emojis = $(@).find('.emoji')
@@ -23,15 +22,18 @@ class EmojiscriptView
     ))
 
     atom.workspace.onDidStopChangingActivePaneItem( (item) ->
-      # console.log item
       active_editor = item
     )
-    # @active_editor = atom.workspace.getActiveTextEditor(@editor)
-    # console.log @active_editor.getTitle()
 
     active_editor.onDidSave( ->
-      cmd.run("./transpiler/emojiscript #{file_path} transpiler/substitutions.txt")
-      console.log "File #{file_title} transpiled"
+      title = active_editor.getTitle()
+      ext = title.split(".")[1]
+      console.log ext
+      path = active_editor.getPath()
+      if ext == "emoji"
+        cmd.get("cd #{file_path}/../../ && ./transpiler/emojiscript #{path} transpiler/substitutions.txt", (output) ->
+          console.log output
+        )
     )
 
   serialize: ->
