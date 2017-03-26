@@ -1,15 +1,23 @@
 
 🔬 fizzbuzz🌜number🌛 ↪
-  ⌛🌜number 🔊 0🌛 ↪
+    🍀 🌜🍰 i ⚖ 1🛑 i 🔉⚖ number🛑 i⏩🌛 ↪
+        🍰 output ⚖ ""
 
-    🤔 🌜number ✂ 3 ⚖⚖ 0🌛 ↪
-      console🥊log🌜"fizz"🌛
+        🤔 🌜output ✂ 3 ⚖⚖ 0🌛 ↪
+            output ✝⚖ "Fizz"
+        ↩
+
+        🤔 🌜output ✂ 5 ⚖⚖ 0🌛 ↪
+            output ✝⚖ "Buzz"
+        ↩
+
+        🤔 🌜output ⚖⚖ ""🌛 ↪
+            console🍍log🌜i🌛
+        ↩
+        👎 ↪
+            console🍍log🌜output🌛
+        ↩
     ↩
-    🤔 🌜number ✂ 5 ⚖⚖ 0🌛 ↪
-      console🥊log🌜"buzz"🌛
-    ↩
-    number⏪
-  ↩
 ↩
 
 fizzbuzz🌜20🌛
