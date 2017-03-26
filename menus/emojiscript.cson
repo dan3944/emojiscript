@@ -13,8 +13,12 @@
       'label': 'emojiscript'
       'submenu': [
         {
-          'label': 'Toggle'
+          'label': 'Toggle Emoji User Panel'
           'command': 'emojiscript:toggle'
+        },
+        {
+          'label': 'Run'
+          'command': 'emojiscript:run'
         }
       ]
     ]
