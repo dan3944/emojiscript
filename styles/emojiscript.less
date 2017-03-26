@@ -1,0 +1,88 @@
+// The ui-variables file is provided by base themes provided by Atom.
+//
+// See https://github.com/atom/atom-dark-ui/blob/master/styles/ui-variables.less
+// for a full listing of what's available.
+@import "ui-variables";
+
+div.emojiscript {
+
+  border-top: 1px solid @app-background-color;
+  margin: 5px 20px;
+  max-height: 300px;
+  display: inline-block;
+  color: @text-color;
+
+  section#emoji-panel {
+
+    width: 100%;
+    display: block;
+
+    h1 {
+      text-align: center;
+      font-size: 2em;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    div#scroll-pane {
+
+      margin: 0 auto;
+      overflow: scroll;
+      height: 250px;
+      width: 80vw;
+      display: block;
+      padding: 20px;
+      margin-bottom: 10px;
+
+      ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: row;
+        flex-basis: 100%;
+        width: 100%;
+        height: auto;
+        flex-wrap: wrap;
+        overflow: visible;
+
+        li {
+          background-color: @base-background-color;
+          border: 1px solid @base-border-color;
+          width: 70px;
+          text-align: center;
+          padding: 5px;
+          margin: 2px;
+
+          div.translation {
+            font-size: 1em;
+            background-color: @overlay-background-color;
+            font-style: italic;
+          }
+
+          div.emoji {
+            font-size: 3em;
+            background-color: @button-background-color;
+            border: 1px solid @button-border-color;
+          }
+
+          div.emoji:hover {
+            background-color: @button-background-color-hover;
+            border: 1px dashed @button-border-color;
+            color: @button-background-color-selected;
+            cursor: pointer;
+          }
+
+          div.emoji:active {
+            background-color: @button-background-color-selected;
+            border: 1px solid @button-border-color;
+            color: @text-color-selected;
+          }
+
+        }
+      }
+    }
+  }
+}
