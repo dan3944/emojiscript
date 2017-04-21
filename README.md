@@ -38,4 +38,7 @@ console🍍log🌜if🌛
 ```
 
 Dependencies: Haskell
+
 Usage: `emojiscript <sourcefile.emoji> [optional: <substitutionsfile.txt>]`
+
+EmojiScript was created at HackBeanpot 2017 by Daniel Cohen, Milo Turner, and Nathan Goodman. It won the "Most Fun Idea" award.
