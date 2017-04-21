@@ -1,5 +1,5 @@
 # EmojiScript
-A modern, dynamically typed, state of the art programming language
+A modern, dynamically typed, state of the art programming language.
 
 Instead of using syntax taking from the dull and boring english language, emojiscript takes advantage of the latest advances in unicode technology to provide you with a better way to write Javascript.
 
