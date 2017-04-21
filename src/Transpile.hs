@@ -2,8 +2,8 @@
 
 module Main where
 
-import Control.Monad (foldM)
 import Control.Arrow ((>>>), (&&&))
+import Control.Monad (foldM)
 import Control.Monad.Trans.Writer.Lazy (tell, runWriter, execWriter)
 import Data.Function ((&))
 import Data.List (maximumBy, isPrefixOf)
@@ -52,8 +52,8 @@ extendMappings m g = m `M.union` extension
 randomN 0 rng g = ([],g)
 randomN n rng g = (x:xs,g'')
   where
-    (x,g') = randomR rng g
-    (xs,g'') = randomN (n - 1) rng g'
+    (x,  g')  = randomR rng g
+    (xs, g'') = randomN (n - 1) rng g'
 
 replace :: Mappings -> [Atom] -> [Atom]
 replace mappings [] = []
@@ -77,7 +77,7 @@ serialize = concatMap $ \case
                 StringLit s -> "\"" ++ s ++ "\""
 
 parseFile :: String -> [Atom]
-parseFile (q:s) | isQuote q = (StringLit l):parseFile s'
+parseFile (q:s) | isQuote q = StringLit l : parseFile rest
   where
     -- javascript has two quote syntaxes
     isQuote '\'' = True
@@ -86,22 +86,22 @@ parseFile (q:s) | isQuote q = (StringLit l):parseFile s'
 
     -- accumulate the string literal (using Writer)
     -- and get the final portion
-    (s',l) = runWriter (scanString s)
+    (rest, l) = runWriter (scanString s)
 
-    scanString (q':s) | (q' == q) = return s
-    scanString (q':s) | isQuote q' = tell ['\\',q'] >> scanString s
-    scanString ('\\':x:s) = tell ['\\',x] >> scanString s
-    scanString (c:s) = tell [c] >> scanString s
+    scanString (q':s) | (q' == q)   = return s
+    scanString (q':s) | isQuote q'  = tell ['\\', q'] >> scanString s
+    scanString ('\\':x:s)           = tell ['\\', x]  >> scanString s
+    scanString (c:s)                = tell [c]        >> scanString s
 
-parseFile ('/':'/':s) = (Comment com):parseFile s'
+parseFile ('/':'/':s) = Comment com : parseFile rest
   where
-    (com,s') = span (/= '\n') s
+    (com, rest) = span (/= '\n') s
 
-parseFile ('/':'*':s) = (Comment com):parseFile s'
+parseFile ('/':'*':s) = Comment com : parseFile rest
   where
-    (s',com) = runWriter (scanMLC s)
+    (rest, com) = runWriter (scanMLC s)
     scanMLC ('*':'/':s) = return s
     scanMLC (c:s) = tell [c] >> scanMLC s
 
-parseFile (c:s) = (CharLit c):parseFile s
+parseFile (c:s) = CharLit c : parseFile s
 parseFile "" = []

@@ -2,5 +2,5 @@ console.log("You can output reserved emojis as strings, and emojiscript won\'t r
 console.log("🔨🏨👶\n")
 
 console.log("You can even use Javascript\'s reserved words as variable names: ")
-let zckisoud = 5
-console.log(zckisoud)
+let lgpetrjv = "if"
+console.log(lgpetrjv)
