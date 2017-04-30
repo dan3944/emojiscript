@@ -37,6 +37,6 @@ console🍍log🌜"You can even use Javascript's reserved words as variable name
 console🍍log🌜if🌛
 ```
 
-Dependencies: Haskell
-
 Usage: `emojiscript <sourcefile.emoji> [optional: <substitutionsfile.txt>]`
+
+This was created at HackBeanpot 2017.
