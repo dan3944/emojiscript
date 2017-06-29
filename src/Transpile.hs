@@ -11,7 +11,7 @@ import Data.Maybe (fromJust)
 import Data.Ord (comparing)
 import System.Directory (doesFileExist)
 import System.Environment (getArgs)
-import System.Random
+import System.Random (newStdGen, randomR, RandomGen)
 import qualified Data.Map.Strict as M
 
 type Mappings = M.Map String String
@@ -41,7 +41,7 @@ extendMappings :: RandomGen g => Mappings -> g -> Mappings
 extendMappings m g = m `M.union` extension
   where
     write g elem = do
-      let (suffix,g') = randomN 8 ('a','z') g
+      let (suffix, g') = randomN 8 ('a','z') g
       tell [suffix]
       return g'
 
@@ -49,8 +49,8 @@ extendMappings m g = m `M.union` extension
     elems' = execWriter $ foldM write g $ elems
     extension = M.fromList $ zip elems elems'
 
-randomN 0 rng g = ([],g)
-randomN n rng g = (x:xs,g'')
+randomN 0 rng g = ([], g)
+randomN n rng g = (x:xs, g'')
   where
     (x,  g')  = randomR rng g
     (xs, g'') = randomN (n - 1) rng g'
